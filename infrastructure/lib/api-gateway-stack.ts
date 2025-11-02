@@ -68,8 +68,7 @@ export class ApiGatewayStack extends cdk.Stack {
       ]
     })
 
-    // Add CORS to all methods
-    this.addCorsOptions(webhookResource)
+    // Note: CORS is already configured via defaultCorsPreflightOptions above
 
     // Create usage plan and API key for rate limiting
     const plan = this.api.addUsagePlan('UsagePlan', {
@@ -107,29 +106,6 @@ export class ApiGatewayStack extends cdk.Stack {
     new cdk.CfnOutput(this, 'LeadsEndpoint', {
       value: `${this.api.url}webhook/leads`,
       description: 'Leads processing endpoint URL'
-    })
-  }
-
-  private addCorsOptions(apiResource: apigateway.IResource) {
-    apiResource.addMethod('OPTIONS', new apigateway.MockIntegration({
-      integrationResponses: [{
-        statusCode: '200',
-        responseParameters: {
-          'method.response.header.Access-Control-Allow-Headers': "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
-          'method.response.header.Access-Control-Allow-Origin': "'*'",
-          'method.response.header.Access-Control-Allow-Methods': "'OPTIONS,GET,PUT,POST,DELETE'"
-        }
-      }],
-      requestTemplates: { 'application/json': '{"statusCode": 200}' }
-    }), {
-      methodResponses: [{
-        statusCode: '200',
-        responseParameters: {
-          'method.response.header.Access-Control-Allow-Headers': true,
-          'method.response.header.Access-Control-Allow-Methods': true,
-          'method.response.header.Access-Control-Allow-Origin': true
-        }
-      }]
     })
   }
 }
