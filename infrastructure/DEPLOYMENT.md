@@ -2,19 +2,35 @@
 
 ## Prerequisites
 
-1. **AWS CLI configured**:
+1. **Supabase Project** (see [SUPABASE_SETUP.md](SUPABASE_SETUP.md))
+   - Create account at [supabase.com](https://supabase.com)
+   - Create new project
+   - Get connection details
+
+2. **AWS CLI configured**:
    ```bash
    aws configure
    ```
 
-2. **Node.js 18+ installed**
+3. **Node.js 18+ installed**
 
-3. **AWS CDK CLI**:
+4. **AWS CDK CLI**:
    ```bash
    npm install -g aws-cdk
    ```
 
+5. **Supabase Credentials in SSM**:
+   ```bash
+   # Run the SSM setup commands from SUPABASE_SETUP.md
+   ```
+
 ## Step-by-Step Deployment
+
+### 0. Configure Supabase First
+
+**IMPORTANT**: Complete Supabase setup before deploying Fargate!
+
+See [SUPABASE_SETUP.md](SUPABASE_SETUP.md) for detailed instructions.
 
 ### 1. Install Infrastructure Dependencies
 

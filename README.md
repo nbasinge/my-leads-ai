@@ -85,9 +85,15 @@ This project includes AWS CDK infrastructure for deploying n8n automation workfl
 - **n8n on Fargate**: Serverless container for automation workflows
 - **API Gateway**: Managed API endpoint for n8n webhooks
 - **Application Load Balancer**: Routes traffic to n8n services
+- **Supabase**: Managed PostgreSQL database for n8n data
 - **AWS Amplify**: Hosts the React frontend
 
 See [infrastructure/README.md](infrastructure/README.md) for detailed setup instructions.
+
+### Quick Infrastructure Setup
+
+1. **Set up Supabase**: See [infrastructure/SUPABASE_SETUP.md](infrastructure/SUPABASE_SETUP.md)
+2. **Deploy AWS stack**: See [infrastructure/DEPLOYMENT.md](infrastructure/DEPLOYMENT.md)
 
 ## Future Enhancements
 

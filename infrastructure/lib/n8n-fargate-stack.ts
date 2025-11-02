@@ -97,11 +97,29 @@ export class N8nFargateStack extends cdk.Stack {
         N8N_METRICS: 'true',
         EXECUTIONS_PROCESS: 'main',
         DB_TYPE: 'postgresdb',
-        DB_POSTGRESDB_HOST: 'nescka-n8n-db.cluster-xxxxx.us-east-1.rds.amazonaws.com', // TODO: Replace with actual RDS endpoint
-        DB_POSTGRESDB_PORT: '5432',
-        DB_POSTGRESDB_DATABASE: 'n8n',
-        DB_POSTGRESDB_USER: 'n8n_admin',
-        WEBHOOK_URL: `http://${this.loadBalancer.loadBalancerDnsName}/webhook`
+        // Supabase connection will be set via Secrets Manager
+        // Format: postgresql://user:password@host:port/database
+        // Example: DB_POSTGRESDB_HOST will be extracted from connection string
+      },
+      secrets: {
+        // Use Secrets Manager for secure credentials
+        // You'll need to create this secret with Supabase connection details
+        // Format: {"DB_POSTGRESDB_HOST": "supabase-host", "DB_POSTGRESDB_USER": "user", "DB_POSTGRESDB_PASSWORD": "pass"}
+        DB_POSTGRESDB_HOST: ecs.Secret.fromSsmParameter(
+          ssm.StringParameter.fromStringParameterName(this, 'SupabaseHost', '/nescka/supabase/host')
+        ),
+        DB_POSTGRESDB_PORT: ecs.Secret.fromSsmParameter(
+          ssm.StringParameter.fromStringParameterName(this, 'SupabasePort', '/nescka/supabase/port')
+        ),
+        DB_POSTGRESDB_DATABASE: ecs.Secret.fromSsmParameter(
+          ssm.StringParameter.fromStringParameterName(this, 'SupabaseDatabase', '/nescka/supabase/database')
+        ),
+        DB_POSTGRESDB_USER: ecs.Secret.fromSsmParameter(
+          ssm.StringParameter.fromStringParameterName(this, 'SupabaseUser', '/nescka/supabase/user')
+        ),
+        DB_POSTGRESDB_PASSWORD: ecs.Secret.fromSsmParameter(
+          ssm.StringParameter.fromStringParameterName(this, 'SupabasePassword', '/nescka/supabase/password')
+        )
       },
       healthCheck: {
         command: ['CMD-SHELL', 'curl -f http://localhost:5678/healthz || exit 1'],
