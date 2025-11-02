@@ -22,15 +22,18 @@ A modern, minimalist web dashboard for tracking leads from Upwork, LinkedIn, and
 
 ## Getting Started
 
+**⚡ Quick Start**: See [QUICKSTART.md](QUICKSTART.md) for fastest setup options!
+
 ### Prerequisites
 
 - Node.js 18+ and npm/yarn/pnpm
+- For full stack: AWS account + Supabase account
 
 ### Installation
 
 1. Clone the repository:
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/nbasinge/my-leads-ai.git
 cd my-leads-ai
 ```
 
@@ -39,12 +42,18 @@ cd my-leads-ai
 npm install
 ```
 
-3. Start the development server:
+3. Configure environment (optional for local dev):
+```bash
+cp env.sample .env
+# Edit .env with your credentials
+```
+
+4. Start the development server:
 ```bash
 npm run dev
 ```
 
-4. Open your browser to `http://localhost:5173`
+5. Open your browser to `http://localhost:5173`
 
 ### Build for Production
 
@@ -53,6 +62,15 @@ npm run build
 ```
 
 The production build will be in the `dist` directory.
+
+### Environment Variables
+
+Copy `env.sample` to `.env` and configure:
+- **Supabase**: Database credentials from Supabase dashboard
+- **AWS**: Region and account settings
+- **n8n**: Webhook URLs and API endpoints
+
+See `env.sample` for all available options.
 
 ## Project Structure
 
