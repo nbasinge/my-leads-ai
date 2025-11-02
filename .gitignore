@@ -12,6 +12,22 @@ dist
 dist-ssr
 *.local
 
+# AWS Amplify
+amplify
+.amplify-hosting
+# amplify/team-provider-info.json
+
+# AWS CDK
+.cdk.staging
+cdk.out
+cdk.context.json
+*.swp
+
+# Infrastructure
+infrastructure/node_modules
+infrastructure/**/node_modules
+infrastructure/.DS_Store
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

@@ -62,13 +62,32 @@ my-leads-ai/
 │   ├── App.tsx           # Main application component
 │   ├── main.tsx          # Application entry point
 │   └── index.css         # Tailwind base styles
+├── infrastructure/       # AWS CDK infrastructure
+│   ├── bin/
+│   │   └── app.ts       # CDK app entry point
+│   ├── lib/
+│   │   ├── n8n-fargate-stack.ts    # n8n on Fargate
+│   │   └── api-gateway-stack.ts    # API Gateway setup
+│   └── package.json     # CDK dependencies
 ├── index.html            # HTML template
+├── amplify.yml           # AWS Amplify config
 ├── package.json          # Dependencies and scripts
 ├── vite.config.ts        # Vite configuration
 ├── tailwind.config.js    # Tailwind configuration
 ├── tsconfig.json         # TypeScript configuration
 └── README.md             # This file
 ```
+
+## AWS Infrastructure
+
+This project includes AWS CDK infrastructure for deploying n8n automation workflows:
+
+- **n8n on Fargate**: Serverless container for automation workflows
+- **API Gateway**: Managed API endpoint for n8n webhooks
+- **Application Load Balancer**: Routes traffic to n8n services
+- **AWS Amplify**: Hosts the React frontend
+
+See [infrastructure/README.md](infrastructure/README.md) for detailed setup instructions.
 
 ## Future Enhancements
 
