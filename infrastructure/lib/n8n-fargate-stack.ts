@@ -97,6 +97,11 @@ export class N8nFargateStack extends cdk.Stack {
         N8N_METRICS: 'true',
         EXECUTIONS_PROCESS: 'main',
         DB_TYPE: 'postgresdb',
+        DB_POSTGRESDB_SSL: 'true',
+        DB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED: 'false',
+        N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS: 'false',
+        // Generate encryption key for n8n
+        GENERIC_TIMEZONE: 'UTC',
         // Supabase connection will be set via Secrets Manager
         // Format: postgresql://user:password@host:port/database
         // Example: DB_POSTGRESDB_HOST will be extracted from connection string
