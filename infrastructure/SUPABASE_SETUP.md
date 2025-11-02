@@ -58,7 +58,27 @@ CREATE DATABASE n8n;
 
 ### 4. Store Secrets in AWS Systems Manager
 
-You need to create SSM parameters for the Supabase connection:
+You need to create SSM parameters for the Supabase connection.
+
+#### Option A: Use Automated Script (Recommended) ✅
+
+```bash
+# From infrastructure directory
+cd infrastructure
+npm run setup-supabase
+
+# Or run directly:
+./scripts/setup-supabase-ssm.sh
+```
+
+The script will:
+- ✅ Check AWS CLI is configured
+- ✅ Prompt for Supabase credentials
+- ✅ Create all required SSM parameters
+- ✅ Verify parameters are accessible
+- ✅ Show next steps
+
+#### Option B: Manual AWS CLI
 
 ```bash
 # Set your Supabase credentials

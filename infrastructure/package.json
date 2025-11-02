@@ -10,7 +10,8 @@
     "cdk": "cdk",
     "deploy": "cdk deploy --all",
     "destroy": "cdk destroy --all",
-    "synth": "cdk synth"
+    "synth": "cdk synth",
+    "setup-supabase": "./scripts/setup-supabase-ssm.sh"
   },
   "dependencies": {
     "aws-cdk-lib": "^2.100.0",

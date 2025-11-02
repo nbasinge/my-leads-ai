@@ -46,28 +46,20 @@ For deploying the complete system with n8n automation.
 
 #### 1. Set Up Supabase Database
 
+**Create Supabase Project:**
+1. Go to https://supabase.com and sign up
+2. Create new project: `nescka-n8n-db`
+3. Save your password!
+
+**Store Credentials in AWS SSM:**
+
+Use the automated script (recommended):
 ```bash
-# 1. Create project at https://supabase.com
-# 2. Copy connection details
-# 3. Store in AWS SSM Parameters (see infrastructure/SUPABASE_SETUP.md)
+cd infrastructure
+npm run setup-supabase
 ```
 
-Quick SSM setup:
-```bash
-# Set your Supabase values
-export SUPABASE_HOST="db.xxxxxxx.supabase.co"
-export SUPABASE_PORT="5432"
-export SUPABASE_DB="postgres"
-export SUPABASE_USER="postgres"
-export SUPABASE_PASSWORD="your-password"
-
-# Create SSM parameters
-aws ssm put-parameter --name "/nescka/supabase/host" --value "$SUPABASE_HOST" --type "String"
-aws ssm put-parameter --name "/nescka/supabase/port" --value "$SUPABASE_PORT" --type "String"
-aws ssm put-parameter --name "/nescka/supabase/database" --value "$SUPABASE_DB" --type "String"
-aws ssm put-parameter --name "/nescka/supabase/user" --value "$SUPABASE_USER" --type "String"
-aws ssm put-parameter --name "/nescka/supabase/password" --value "$SUPABASE_PASSWORD" --type "SecureString"
-```
+Or manual setup (see infrastructure/SUPABASE_SETUP.md for full details)
 
 #### 2. Configure Environment Variables
 
